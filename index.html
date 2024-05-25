@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .container{
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+        p{
+            margin-top: 20px;
+            font-weight: bolder;
+        }
+        #inputField{
+            margin-top: 20px;
+            padding: 5px;
+            width: 80%;
+        }
+        #btn{
+            margin-top: 20px;
+            background-color: #418fe9;
+            border-radius: 3px;
+            padding: 7px 14px;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+        #btn:hover{
+            background-color:#48d048;
+        }
+        h2{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Age Calculator</h1>
+        <p>Enter Yout Date Of Birth : </p>
+        <input type="date" placeholder="Enter Yout Date Of Birth" id="inputField">
+        <br/>
+        <button type="submit" id="btn">Calculate Age</button>
+        <h2 id="res"></h2>
+    </div>
+
+
+
+    <script>
+
+        const btn = document.getElementById('btn');
+        const res = document.getElementById('res');
+
+        function calculateAge(){
+            const personDob = new Date(document.getElementById('inputField').value);
+            const currentDate = new Date();
+
+            const differenceMiliSeconds = currentDate - personDob;
+            if(!isNaN(differenceMiliSeconds)){
+                const diffYears = currentDate.getFullYear() - personDob.getFullYear();
+                const diffMonths = currentDate.getMonth() - personDob.getMonth();
+                const diffDays = currentDate.getDate() - personDob.getDate();
+
+                if (diffMonths < 0 || (diffMonths === 0 && diffDays < 0)) {
+                diffYears--;
+                diffMonths += 12;
+                }
+                if (diffDays < 0) {
+                diffDays += new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
+                diffMonths--;
+                }
+
+                const ageString = `${diffYears} Years,${diffMonths} Month,${diffDays} Days`
+                res.textContent = `Your Age is ${ageString}`
+            }else{
+                res.textContent = `Please Enter Valid Date`
+            }
+        }
+        btn.addEventListener('click',calculateAge);
+
+    </script>
+</body>
+</html>
