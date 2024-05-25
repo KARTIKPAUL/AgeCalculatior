@@ -63,18 +63,18 @@
 
     <script>
 
-        const btn = document.getElementById('btn');
-        const res = document.getElementById('res');
+        let btn = document.getElementById('btn');
+        let res = document.getElementById('res');
 
         function calculateAge(){
-            const personDob = new Date(document.getElementById('inputField').value);
-            const currentDate = new Date();
+            let personDob = new Date(document.getElementById('inputField').value);
+            let currentDate = new Date();
 
-            const differenceMiliSeconds = currentDate - personDob;
+            let differenceMiliSeconds = currentDate - personDob;
             if(!isNaN(differenceMiliSeconds)){
-                const diffYears = currentDate.getFullYear() - personDob.getFullYear();
-                const diffMonths = currentDate.getMonth() - personDob.getMonth();
-                const diffDays = currentDate.getDate() - personDob.getDate();
+                let diffYears = currentDate.getFullYear() - personDob.getFullYear();
+                let diffMonths = currentDate.getMonth() - personDob.getMonth();
+                let diffDays = currentDate.getDate() - personDob.getDate();
 
                 if (diffMonths < 0 || (diffMonths === 0 && diffDays < 0)) {
                 diffYears--;
@@ -85,7 +85,7 @@
                 diffMonths--;
                 }
 
-                const ageString = `${diffYears} Years,${diffMonths} Month,${diffDays} Days`
+                let ageString = `${diffYears} Years,${diffMonths} Month,${diffDays} Days`
                 res.textContent = `Your Age is ${ageString}`
             }else{
                 res.textContent = `Please Enter Valid Date`
